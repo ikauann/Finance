@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "background": "#FAFAFA",
+                        "surface-bright": "#f7fbf1",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffd9e2",
+                        "tertiary-container": "#B3E5FC",
+                        "secondary-fixed": "#ffdbcb",
+                        "on-primary-fixed-variant": "#0c5216",
+                        "outline": "#717a6d",
+                        "on-secondary-container": "#E65100",
+                        "dark-primary": "#81C784",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#fb6d00",
+                        "on-surface": "#1C1B1F",
+                        "primary-fixed-dim": "#91d78a",
+                        "tertiary-fixed-dim": "#ffb1c8",
+                        "secondary-fixed-dim": "#ffb691",
+                        "primary-container": "#C8E6C9",
+                        "inverse-primary": "#91d78a",
+                        "outline-variant": "#c0c9bb",
+                        "surface-variant": "#e0e4db",
+                        "surface-dim": "#d8dbd2",
+                        "primary-fixed": "#acf4a4",
+                        "on-primary-container": "#90d689",
+                        "primary": "#1B5E20",
+                        "on-secondary": "#FFFFFF",
+                        "dark-surface": "#1E1E1E",
+                        "on-tertiary-container": "#ffaec6",
+                        "surface-container-low": "#f2f5ec",
+                        "tertiary": "#0277BD",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#002203",
+                        "on-secondary-fixed": "#341100",
+                        "on-tertiary-fixed-variant": "#7a2949",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#793100",
+                        "dark-background": "#121212",
+                        "on-error": "#ffffff",
+                        "surface-container": "#ecefe6",
+                        "error": "#B00020",
+                        "secondary": "#9e4200",
+                        "surface-tint": "#2a6b2c",
+                        "on-background": "#1C1B1F",
+                        "surface-container-high": "#e6e9e0",
+                        "on-surface-variant": "#41493e",
+                        "surface": "#FFFFFF",
+                        "inverse-on-surface": "#eff2e9",
+                        "on-tertiary-fixed": "#3e001d",
+                        "inverse-surface": "#2d322c",
+                        "surface-container-highest": "#e0e4db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "8px",
+                        "lg": "16px",
+                        "xl": "24px",
+                        "xxl": "28px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "m": "16px",
+                        "l": "24px",
+                        "xxl": "48px",
+                        "xl": "32px",
+                        "xxs": "4px",
+                        "xs": "8px",
+                        "s": "12px"
+                    },
+                    "fontFamily": {
+                        "work-sans": ["Work Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bottom-sheet-mask {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-work-sans text-on-surface antialiased overflow-hidden min-h-screen">
+<!-- Backdrop Simulation -->
+<div class="fixed inset-0 bottom-sheet-mask z-0"></div>
+<!-- Main Mobile Container (Mock Device Screen) -->
+<div class="relative z-10 max-w-md mx-auto h-screen flex flex-col justify-end">
+<!-- Top App Bar (Mock background behind sheet) -->
+<header class="bg-white fixed top-0 left-0 w-full z-20 flex justify-between items-center h-16 px-4 shadow-sm border-b border-zinc-200">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-zinc-200 overflow-hidden">
+<img alt="User" data-alt="close up headshot of a professional smiling woman in her 30s with soft natural lighting and blurred office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvNr5GOq9zZM36cr_S0XkpZR5obNXbL7_weaWl-vq3OlGUdUyAGZhnQN-0__kjsInrC3cO1PY8lBhDf3DzufvYZL7zhAZwwINm2n6aoHy_YvQC2JgE3-25Arizq0vA-8uW-AZ2mwcjzndWWeTBwW2a0K2PK1JCH-Sri6uQkxiw4emZ9E2ACluXjFUbcwZ7uJu5tm9PCEejPeNUBnwuyMWrymmebwzxF-e8EmRfCKyQ6B-tVTd8KxtlyjFpcWIqAPclA3_4WB5xnr0"/>
+</div>
+<span class="text-xl font-bold tracking-tight text-green-900">WealthManager</span>
+</div>
+<span class="material-symbols-outlined text-zinc-500" data-icon="notifications">notifications</span>
+</header>
+<!-- Bottom Sheet Content -->
+<div class="bg-white rounded-t-xl shadow-2xl overflow-hidden max-h-[813px] flex flex-col">
+<!-- Sheet Header / Drag Handle -->
+<div class="flex flex-col items-center pt-xs pb-s">
+<div class="w-8 h-1 bg-zinc-300 rounded-full mb-m"></div>
+<div class="px-l w-full flex justify-between items-center">
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Nova Transação</h2>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="close">close</span>
+</div>
+</div>
+<!-- Scrollable Content Section -->
+<div class="overflow-y-auto px-l pb-xxl space-y-l">
+<!-- Type Toggle (Segmented Button) -->
+<div class="flex p-xxs bg-surface-container rounded-lg">
+<button class="flex-1 flex items-center justify-center gap-xs py-s rounded-lg bg-[#FFEBEE] text-error font-medium">
+<span class="material-symbols-outlined text-[20px]" data-icon="trending_down">trending_down</span>
+                        Despesa
+                    </button>
+<button class="flex-1 flex items-center justify-center gap-xs py-s rounded-lg text-zinc-500 font-medium">
+<span class="material-symbols-outlined text-[20px]" data-icon="trending_up">trending_up</span>
+                        Receita
+                    </button>
+</div>
+<!-- Value Input Section -->
+<div class="space-y-xxs">
+<label class="text-label-md font-label-md text-zinc-500 ml-xxs">Valor da transação</label>
+<div class="flex items-baseline gap-xs border-b border-zinc-200 pb-s">
+<span class="text-headline-md font-display-sm text-zinc-400">R$</span>
+<input class="w-full border-none p-0 text-display-sm font-display-sm focus:ring-0 placeholder:text-zinc-300" placeholder="0,00" type="text"/>
+</div>
+</div>
+<!-- Date and Categories Grid -->
+<div class="grid grid-cols-2 gap-m">
+<div class="space-y-xxs">
+<label class="text-label-md font-label-md text-zinc-500 ml-xxs">Data</label>
+<div class="flex items-center gap-xs p-s border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-zinc-500" data-icon="calendar_today">calendar_today</span>
+<span class="text-body-md font-body-md">Hoje</span>
+</div>
+</div>
+<div class="space-y-xxs">
+<label class="text-label-md font-label-md text-zinc-500 ml-xxs">Categoria</label>
+<div class="flex items-center justify-between p-s border border-outline-variant rounded-lg">
+<span class="text-body-md font-body-md truncate">🚗 Mobilidade</span>
+<span class="material-symbols-outlined text-zinc-500" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Subcategory (Disabled State) -->
+<div class="space-y-xxs opacity-50">
+<label class="text-label-md font-label-md text-zinc-500 ml-xxs">Subcategoria</label>
+<div class="flex items-center justify-between p-s border border-outline-variant bg-surface-container-low rounded-lg">
+<span class="text-body-md font-body-md text-zinc-400 italic">Selecione uma categoria primeiro</span>
+<span class="material-symbols-outlined text-zinc-300" data-icon="lock">lock</span>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-xxs">
+<label class="text-label-md font-label-md text-zinc-500 ml-xxs">Descrição</label>
+<textarea class="w-full p-s border border-outline-variant rounded-lg text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-zinc-400" placeholder="Descrição (opcional)" rows="2"></textarea>
+</div>
+<!-- Tags Section -->
+<div class="space-y-xxs">
+<label class="text-label-md font-label-md text-zinc-500 ml-xxs">Tags</label>
+<div class="flex flex-wrap items-center gap-xs p-s border border-outline-variant rounded-lg">
+<div class="flex items-center gap-xxs px-s py-xxs bg-primary-container text-on-primary-fixed-variant rounded-full text-label-md">
+                            #tag1
+                            <span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</div>
+<div class="flex items-center gap-xxs px-s py-xxs bg-primary-container text-on-primary-fixed-variant rounded-full text-label-md">
+                            #tag2
+                            <span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</div>
+<input class="flex-1 min-w-[100px] border-none p-0 text-body-md font-body-md focus:ring-0 placeholder:text-zinc-400" placeholder="Adicionar tag..." type="text"/>
+</div>
+</div>
+<!-- Attachment -->
+<div class="flex items-center justify-between p-s border border-dashed border-zinc-300 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-s">
+<div class="w-10 h-10 flex items-center justify-center rounded-lg bg-zinc-100">
+<span class="material-symbols-outlined text-zinc-500" data-icon="receipt_long">receipt_long</span>
+</div>
+<div>
+<p class="text-title-sm font-title-sm">Anexar Cupom</p>
+<p class="text-label-sm font-label-sm text-zinc-500">JPG, PNG ou PDF até 5MB</p>
+</div>
+</div>
+<button class="px-m py-xs border border-primary text-primary text-label-lg font-label-lg rounded-lg hover:bg-green-50 transition-colors">Escolher arquivo</button>
+</div>
+</div>
+<!-- Sticky Bottom Actions -->
+<div class="px-l py-m border-t border-zinc-100 bg-white flex items-center gap-m">
+<button class="flex-1 py-m text-zinc-600 font-label-lg rounded-lg hover:bg-zinc-50 transition-colors">Cancelar</button>
+<button class="flex-[2] py-m bg-primary text-white font-label-lg rounded-lg shadow-md active:scale-95 transition-transform">Salvar Transação</button>
+</div>
+</div>
+<!-- Navigation Mock (Just for context) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-2 bg-white/80 backdrop-blur-md border-t border-zinc-200">
+<div class="flex flex-col items-center justify-center text-zinc-500">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-[11px] font-medium">Overview</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="text-[11px] font-medium">Activity</span>
+</div>
+<!-- Empty center for floating feel of the sheet -->
+<div class="w-16"></div>
+<div class="flex flex-col items-center justify-center text-zinc-500">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-[11px] font-medium">Budget</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[11px] font-medium">Settings</span>
+</div>
+</nav>
+<!-- FAB Simulation (Hidden behind or part of the flow) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+<button class="w-14 h-14 bg-secondary-container text-white rounded-xxl shadow-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]" data-icon="add" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</body></html>

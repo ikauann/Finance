@@ -1,0 +1,14 @@
+*.iml
+.gradle
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+/app/build
+*.hprof
+*.pyc
+## Pasta de contexto do projeto (opcional, remover se quiser ignorar)
+# /CONTEXTO DO PROJETO

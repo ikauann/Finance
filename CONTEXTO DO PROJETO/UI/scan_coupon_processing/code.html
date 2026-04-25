@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb1c8",
+                    "primary-fixed-dim": "#91d78a",
+                    "on-secondary-container": "#562100",
+                    "on-primary-fixed": "#002203",
+                    "on-primary-container": "#90d689",
+                    "on-error": "#ffffff",
+                    "surface": "#FFFFFF",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e6e9e0",
+                    "on-surface": "#191d17",
+                    "primary-fixed": "#acf4a4",
+                    "outline-variant": "#c0c9bb",
+                    "surface-container-highest": "#e0e4db",
+                    "tertiary": "#0277BD",
+                    "on-tertiary-container": "#ffaec6",
+                    "on-primary-fixed-variant": "#0c5216",
+                    "error-container": "#ffdad6",
+                    "dark-surface": "#1E1E1E",
+                    "primary-container": "#C8E6C9",
+                    "on-primary": "#FFFFFF",
+                    "on-background": "#1C1B1F",
+                    "surface-variant": "#e0e4db",
+                    "secondary": "#9e4200",
+                    "on-secondary-fixed": "#341100",
+                    "primary": "#00450d",
+                    "on-tertiary-fixed-variant": "#7a2949",
+                    "surface-container-low": "#f2f5ec",
+                    "inverse-surface": "#2d322c",
+                    "tertiary-container": "#883454",
+                    "on-tertiary": "#FFFFFF",
+                    "error": "#B00020",
+                    "surface-dim": "#d8dbd2",
+                    "surface-container": "#ecefe6",
+                    "on-tertiary-fixed": "#3e001d",
+                    "secondary-fixed-dim": "#ffb691",
+                    "inverse-on-surface": "#eff2e9",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#91d78a",
+                    "tertiary-fixed": "#ffd9e2",
+                    "surface-bright": "#f7fbf1",
+                    "secondary-container": "#FFE0B2",
+                    "on-secondary-fixed-variant": "#793100",
+                    "background": "#FAFAFA",
+                    "dark-primary": "#81C784",
+                    "dark-background": "#121212",
+                    "secondary-fixed": "#ffdbcb",
+                    "on-surface-variant": "#41493e",
+                    "outline": "#717a6d",
+                    "surface-tint": "#2a6b2c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "m": "16px",
+                    "xl": "32px",
+                    "xxl": "48px",
+                    "xs": "8px",
+                    "s": "12px",
+                    "l": "24px",
+                    "xxs": "4px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Work Sans"],
+                    "body-md": ["Work Sans"],
+                    "label-md": ["Work Sans"],
+                    "headline-sm": ["Work Sans"],
+                    "display-md": ["Work Sans"],
+                    "title-md": ["Work Sans"],
+                    "label-lg": ["Work Sans"],
+                    "display-sm": ["Work Sans"],
+                    "display-lg": ["Work Sans"],
+                    "title-lg": ["Work Sans"],
+                    "headline-md": ["Work Sans"],
+                    "headline-lg": ["Work Sans"],
+                    "body-sm": ["Work Sans"],
+                    "body-lg": ["Work Sans"],
+                    "title-sm": ["Work Sans"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 2s linear infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-white border-b border-zinc-200 shadow-sm">
+<div class="flex items-center gap-4">
+<button class="active:opacity-70 transition-opacity hover:bg-zinc-100 p-2 rounded-full">
+<span class="material-symbols-outlined text-green-900" data-icon="close">close</span>
+</button>
+<h1 class="font-['Work_Sans'] text-lg font-semibold tracking-tight text-green-900">Processando...</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-zinc-200 overflow-hidden">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="Professional studio headshot of a person with a friendly expression against a neutral grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgEMylDJslW67HkqSq6cQMH_Dq9kFU-kW5TUBZnxuIrCGmILjnBuUK9bHXfGJOvZKRdvgtD_JdX_ge06NU_Kv1s4fNFDjElyWgWHC7VGpsJJKmAXbVZDPdw4o1-Ldvko64WspyIy_Z_R9TKYMIWDwnu7IcRLJoB-xJr4AJ3JF4m2L1KzqHh8id76EjwSpL4BCpbAZqnte8GXDdhd6etqyhPHzv-d4ZKmbJfTpOG33R7skD2BK6YwpP203osuXvVB9ofLw8ZGQiu74"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow pt-24 pb-32 px-l flex flex-col items-center">
+<!-- Receipt Thumbnail -->
+<div class="relative w-48 h-64 bg-white rounded-xl shadow-lg border border-zinc-100 overflow-hidden mb-xl rotate-[-2deg]">
+<img alt="Receipt preview" class="w-full h-full object-cover opacity-60" data-alt="Close-up of a paper grocery receipt with black text and thermal printing texture on a light surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2RJbrjOPXrDSQf9VI0zmeQb_Qc2uQh9iQwwA4QQXAmA6e00g-bqKTHGA4f40QN-SllA-UBnGRqE_yKHNEKO7tLpKNFjX5zIx65bA75mSbYFN3FXv0sDMa4UdTDdcEW-19mPEzhyGnjQFViKBpU0wQZQ9RXJXIgfxdoIFmPxJSf5dPYQx9mAR4Jr7nKP28JWWjJsj55pzLGsHezxXhwDFgbuXVKYm523Yj1lRA8IdUMgdXKUpzssNUbtoI6W_2BxWmcaUXa9wx5V8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<!-- Scanning Line Effect -->
+<div class="absolute top-0 left-0 w-full h-1 bg-green-500/50 shadow-[0_0_15px_rgba(34,197,94,0.8)] translate-y-[50%]"></div>
+</div>
+<!-- Analysis Title -->
+<div class="text-center mb-xl">
+<div class="inline-flex items-center justify-center w-12 h-12 mb-m">
+<span class="material-symbols-outlined text-green-700 text-4xl animate-spin-slow" data-icon="progress_activity">progress_activity</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-xxs">Analisando cupom com IA...</h2>
+<p class="font-body-md text-body-md text-outline">Organizando seus gastos automaticamente</p>
+</div>
+<!-- Status Steps -->
+<div class="w-full max-w-sm bg-white rounded-xl p-m border border-zinc-100 shadow-sm">
+<ul class="space-y-m">
+<!-- Step Completed -->
+<li class="flex items-center gap-m">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-700 text-[18px] font-bold" data-icon="check" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-title-sm text-title-sm text-green-900">Texto extraído</span>
+</li>
+<!-- Step Active -->
+<li class="flex items-center gap-m">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="hourglass_empty">hourglass_empty</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface">Identificando itens...</span>
+<div class="w-full h-1 bg-zinc-100 rounded-full mt-xxs overflow-hidden">
+<div class="h-full bg-secondary w-2/3 rounded-full"></div>
+</div>
+</div>
+</li>
+<!-- Step Pending -->
+<li class="flex items-center gap-m opacity-40">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-zinc-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-zinc-500 text-[18px]" data-icon="hourglass_empty">hourglass_empty</span>
+</div>
+<span class="font-title-sm text-title-sm text-on-surface">Calculando total...</span>
+</li>
+</ul>
+</div>
+</main>
+<!-- BottomNavBar (Suppressed as per rules for task-focused sub-pages) -->
+<!-- However, the prompt implies this is a transition screen. We maintain the "Processing" context -->
+<footer class="fixed bottom-0 left-0 w-full bg-white px-l py-m border-t border-zinc-100">
+<div class="flex flex-col items-center gap-xs">
+<p class="font-label-sm text-label-sm text-outline">Por favor, não feche o aplicativo</p>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-green-800"></div>
+<div class="w-2 h-2 rounded-full bg-zinc-200"></div>
+<div class="w-2 h-2 rounded-full bg-zinc-200"></div>
+</div>
+</div>
+</footer>
+</body></html>

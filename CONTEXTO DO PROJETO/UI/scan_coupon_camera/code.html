@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb1c8",
+                    "primary-fixed-dim": "#91d78a",
+                    "on-secondary-container": "#562100",
+                    "on-primary-fixed": "#002203",
+                    "on-primary-container": "#90d689",
+                    "on-error": "#ffffff",
+                    "surface": "#FFFFFF",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e6e9e0",
+                    "on-surface": "#191d17",
+                    "primary-fixed": "#acf4a4",
+                    "outline-variant": "#c0c9bb",
+                    "surface-container-highest": "#e0e4db",
+                    "tertiary": "#0277BD",
+                    "on-tertiary-container": "#ffaec6",
+                    "on-primary-fixed-variant": "#0c5216",
+                    "error-container": "#ffdad6",
+                    "dark-surface": "#1E1E1E",
+                    "primary-container": "#C8E6C9",
+                    "on-primary": "#FFFFFF",
+                    "on-background": "#1C1B1F",
+                    "surface-variant": "#e0e4db",
+                    "secondary": "#9e4200",
+                    "on-secondary-fixed": "#341100",
+                    "primary": "#00450d",
+                    "on-tertiary-fixed-variant": "#7a2949",
+                    "surface-container-low": "#f2f5ec",
+                    "inverse-surface": "#2d322c",
+                    "tertiary-container": "#883454",
+                    "on-tertiary": "#FFFFFF",
+                    "error": "#B00020",
+                    "surface-dim": "#d8dbd2",
+                    "surface-container": "#ecefe6",
+                    "on-tertiary-fixed": "#3e001d",
+                    "secondary-fixed-dim": "#ffb691",
+                    "inverse-on-surface": "#eff2e9",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#91d78a",
+                    "tertiary-fixed": "#ffd9e2",
+                    "surface-bright": "#f7fbf1",
+                    "secondary-container": "#FFE0B2",
+                    "on-secondary-fixed-variant": "#793100",
+                    "background": "#FAFAFA",
+                    "dark-primary": "#81C784",
+                    "dark-background": "#121212",
+                    "secondary-fixed": "#ffdbcb",
+                    "on-surface-variant": "#41493e",
+                    "outline": "#717a6d",
+                    "surface-tint": "#2a6b2c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "m": "16px",
+                    "xl": "32px",
+                    "xxl": "48px",
+                    "xs": "8px",
+                    "s": "12px",
+                    "l": "24px",
+                    "xxs": "4px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Work Sans"],
+                    "body-md": ["Work Sans"],
+                    "label-md": ["Work Sans"],
+                    "headline-sm": ["Work Sans"],
+                    "display-md": ["Work Sans"],
+                    "title-md": ["Work Sans"],
+                    "label-lg": ["Work Sans"],
+                    "display-sm": ["Work Sans"],
+                    "display-lg": ["Work Sans"],
+                    "title-lg": ["Work Sans"],
+                    "headline-md": ["Work Sans"],
+                    "headline-lg": ["Work Sans"],
+                    "body-sm": ["Work Sans"],
+                    "body-lg": ["Work Sans"],
+                    "title-sm": ["Work Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .camera-overlay {
+            background: rgba(0, 0, 0, 0.4);
+            clip-path: polygon(0% 0%, 0% 100%, 15% 100%, 15% 15%, 85% 15%, 85% 85%, 15% 85%, 15% 100%, 100% 100%, 100% 0%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-black font-body-md text-on-surface overflow-hidden">
+<!-- Camera Background -->
+<div class="fixed inset-0 z-0">
+<img alt="View of a white paper grocery receipt held against a blurred supermarket background with warm ambient lighting" class="w-full h-full object-cover opacity-90" data-alt="Close-up of a paper grocery receipt held by a person in a brightly lit modern supermarket aisle with soft focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwOrquK8gSyvmR245t9ueSrZrf_XUojgbnXq_-A5047WRYPdMm_p5tqE8vPPN406gdJ3D4doKgWov8iR_qwrGiDPqGuXw-Ad-OMXGbXxv1Uw5gYYSMT_1qFXGrMFL6IAy8hWsl7mb-BbTm7ENO2rJuowcdeiH14bUaaCT6eEFGV9GLPY8K0_FVN6pzwnnk_Lr5Xki_cQaMhJHIzvSiH7a6xWOk8Tf7ERuU3j7FNUHe1G7mWc4RgI7T291Vx-l1i8tnbA5aaBRrVHE"/>
+</div>
+<!-- UI Overlay Layer -->
+<div class="fixed inset-0 z-10 flex flex-col pointer-events-none">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-black/20 backdrop-blur-sm pointer-events-auto">
+<div class="flex items-center gap-m">
+<button class="p-xs text-white active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-['Work_Sans'] text-lg font-semibold tracking-tight text-white">PriceVision</h1>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-white/20 overflow-hidden">
+<img alt="User profile avatar" data-alt="Professional headshot of a smiling man with neat hair against a clean neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw1MTEkDy6kS_lRdIGuWEBxNlGZWCTe5ZyhpeSFMzbleXAemYCr1hx8QHv0l_s99cbA4NxcpRaBCvrvM_LdNHBvw3-LTGPoKsb_PCvhWJ8rhcSaLmUC5dLiNPSFNQcqKuOjIuJl5dIIEPh7t3ZXZtaz2CSn6MkNBb_NqhWaNgJvlq7Vnco9o_-JbK-tqogAU3q6WCfo_E06n6rQH5HuMArxJv_uPPb5zuTuN82_JaiP6-v24Lcp0OANc4gVJXmj4Gyf93Bqpx_71s"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas Area (Receipt Guide) -->
+<main class="flex-1 relative flex items-center justify-center p-l">
+<!-- Semi-transparent overlay with hole for receipt -->
+<div class="absolute inset-0 camera-overlay pointer-events-none"></div>
+<!-- Alignment Guide -->
+<div class="relative w-full max-w-[280px] h-[60%] border-2 border-dashed border-white/80 rounded-lg flex flex-col items-center justify-center gap-m">
+<div class="bg-black/40 backdrop-blur-md px-m py-xs rounded-full border border-white/10">
+<p class="font-label-md text-label-md text-white">Align receipt within frame</p>
+</div>
+<!-- Corner markers for extra guidance -->
+<div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg -translate-x-1 -translate-y-1"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg translate-x-1 -translate-y-1"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg -translate-x-1 translate-y-1"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg translate-x-1 translate-y-1"></div>
+</div>
+</main>
+<!-- Bottom Controls -->
+<footer class="h-40 relative flex items-center justify-between px-xl pointer-events-auto">
+<!-- Gallery Button -->
+<button class="flex flex-col items-center justify-center gap-xxs text-white active:scale-95 transition-transform">
+<div class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+</div>
+<span class="font-label-sm text-label-sm">Gallery</span>
+</button>
+<!-- Capture Button -->
+<div class="relative flex items-center justify-center">
+<div class="absolute w-24 h-24 rounded-full border-4 border-primary/30 scale-110"></div>
+<button class="w-20 h-20 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg active:scale-90 transition-transform elevation-3">
+<span class="material-symbols-outlined text-[32px]" data-icon="photo_camera" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</button>
+</div>
+<!-- Flash Toggle -->
+<button class="flex flex-col items-center justify-center gap-xxs text-white active:scale-95 transition-transform">
+<div class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined" data-icon="flash_on">flash_on</span>
+</div>
+<span class="font-label-sm text-label-sm">Flash Off</span>
+</button>
+</footer>
+</div>
+<!-- Hidden Bottom Nav (Suppressed per "Task-Focused" rule but available if needed for architecture) -->
+<!-- Navigation is hidden as this is a focused camera task screen -->
+</body></html>

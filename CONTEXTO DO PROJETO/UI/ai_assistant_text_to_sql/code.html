@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#562100",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f2f5ec",
+                    "on-secondary": "#FFFFFF",
+                    "inverse-primary": "#91d78a",
+                    "surface-tint": "#2a6b2c",
+                    "on-surface-variant": "#41493e",
+                    "tertiary-fixed-dim": "#ffb1c8",
+                    "on-tertiary-fixed": "#3e001d",
+                    "on-tertiary-fixed-variant": "#7a2949",
+                    "outline": "#717a6d",
+                    "inverse-on-surface": "#eff2e9",
+                    "tertiary": "#0277BD",
+                    "surface-dim": "#d8dbd2",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#00450d",
+                    "primary-container": "#C8E6C9",
+                    "primary-fixed-dim": "#91d78a",
+                    "on-tertiary-container": "#ffaec6",
+                    "error-container": "#ffdad6",
+                    "on-error": "#FFFFFF",
+                    "tertiary-container": "#883454",
+                    "on-background": "#1C1B1F",
+                    "inverse-surface": "#2d322c",
+                    "secondary-fixed-dim": "#ffb691",
+                    "secondary": "#9e4200",
+                    "on-primary-container": "#90d689",
+                    "surface-variant": "#e0e4db",
+                    "on-surface": "#191d17",
+                    "secondary-container": "#fb6d00",
+                    "surface-bright": "#f7fbf1",
+                    "background": "#FAFAFA",
+                    "surface-container-highest": "#e0e4db",
+                    "primary-fixed": "#acf4a4",
+                    "outline-variant": "#c0c9bb",
+                    "on-primary-fixed-variant": "#0c5216",
+                    "dark-primary": "#81C784",
+                    "tertiary-fixed": "#ffd9e2",
+                    "surface-container-high": "#e6e9e0",
+                    "secondary-fixed": "#ffdbcb",
+                    "surface-container": "#ecefe6",
+                    "on-secondary-fixed-variant": "#793100",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#002203",
+                    "dark-surface": "#1E1E1E",
+                    "surface": "#FFFFFF",
+                    "dark-background": "#121212",
+                    "on-secondary-fixed": "#341100",
+                    "error": "#B00020"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "8px",
+                    "xl": "12px",
+                    "2xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "48px",
+                    "xxs": "4px",
+                    "xs": "8px",
+                    "xl": "32px",
+                    "s": "12px",
+                    "m": "16px",
+                    "l": "24px"
+            },
+            "fontFamily": {
+                "body": ["Work Sans", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-zinc-950 border-b border-zinc-100 dark:border-zinc-800 flex justify-between items-center w-full px-4 h-16">
+<div class="flex items-center gap-m">
+<button class="active:opacity-70 transition-opacity duration-150 p-xxs">
+<span class="material-symbols-outlined text-green-900 dark:text-green-500">arrow_back</span>
+</button>
+<h1 class="font-['Work_Sans'] text-base font-semibold tracking-tight text-green-900 dark:text-green-500">AI Assistant</h1>
+</div>
+<button class="font-['Work_Sans'] text-base font-semibold tracking-tight text-green-900 dark:text-green-500 active:opacity-70 transition-opacity duration-150">
+            Clear
+        </button>
+</header>
+<main class="max-w-2xl mx-auto pb-32">
+<!-- Suggestion Chips -->
+<div class="flex overflow-x-auto gap-xs px-m py-m no-scrollbar">
+<div class="flex-none px-m py-xs bg-secondary-container text-on-secondary-container rounded-lg font-label-lg text-label-lg cursor-pointer hover:opacity-90 whitespace-nowrap">
+                Quanto gastei com carro?
+            </div>
+<div class="flex-none px-m py-xs bg-secondary-container text-on-secondary-container rounded-lg font-label-lg text-label-lg cursor-pointer hover:opacity-90 whitespace-nowrap">
+                Resumo do mês
+            </div>
+<div class="flex-none px-m py-xs bg-secondary-container text-on-secondary-container rounded-lg font-label-lg text-label-lg cursor-pointer hover:opacity-90 whitespace-nowrap">
+                Maiores despesas
+            </div>
+<div class="flex-none px-m py-xs bg-secondary-container text-on-secondary-container rounded-lg font-label-lg text-label-lg cursor-pointer hover:opacity-90 whitespace-nowrap">
+                Histórico de dividendos
+            </div>
+</div>
+<!-- Chat Conversation -->
+<div class="px-m space-y-l">
+<!-- User Bubble -->
+<div class="flex justify-end">
+<div class="max-w-[80%] bg-primary-container text-primary rounded-2xl p-m rounded-tr-none shadow-sm">
+<p class="font-body-md text-body-md leading-relaxed">Quanto gastei com gasolina em abril?</p>
+</div>
+</div>
+<!-- Assistant Bubble -->
+<div class="flex justify-start">
+<div class="max-w-[80%] bg-surface-variant text-on-surface-variant rounded-2xl p-m rounded-tl-none shadow-sm flex items-start gap-xs">
+<span class="text-lg">🤖</span>
+<p class="font-body-md text-body-md leading-relaxed">Consultando seus dados...</p>
+</div>
+</div>
+<!-- Result Card (Bento/Modern layout) -->
+<div class="ml-s mr-xxs">
+<div class="bg-surface border border-primary rounded-2xl shadow-lg overflow-hidden">
+<div class="bg-primary/5 p-m border-b border-primary/10">
+<h3 class="font-title-md text-title-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined">payments</span>
+                            Gastos com Gasolina (Abril 2026)
+                        </h3>
+</div>
+<div class="p-m grid grid-cols-2 gap-m">
+<div class="col-span-2 bg-surface-container-low p-m rounded-xl border border-outline-variant/30">
+<p class="text-label-md font-label-md text-outline">Total</p>
+<p class="text-headline-sm font-headline-sm text-primary">R$ 1.234,50</p>
+</div>
+<div class="bg-surface-container-low p-m rounded-xl border border-outline-variant/30">
+<p class="text-label-md font-label-md text-outline">Média</p>
+<p class="text-title-lg font-title-lg text-on-surface">R$ 287</p>
+</div>
+<div class="bg-surface-container-low p-m rounded-xl border border-outline-variant/30">
+<p class="text-label-md font-label-md text-outline">Quantidade</p>
+<p class="text-title-lg font-title-lg text-on-surface">5</p>
+</div>
+</div>
+<div class="px-m pb-m flex flex-col sm:flex-row gap-xs">
+<button class="flex-1 bg-primary text-on-primary font-label-lg text-label-lg py-m rounded-lg flex items-center justify-center gap-xs hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+                            Ver Gráfico
+                        </button>
+<button class="flex-1 bg-surface-container-highest text-on-surface font-label-lg text-label-lg py-m rounded-lg flex items-center justify-center gap-xs hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[18px]">list_alt</span>
+                            Ver Transações
+                        </button>
+</div>
+</div>
+</div>
+<!-- Another User Bubble -->
+<div class="flex justify-end">
+<div class="max-w-[80%] bg-primary-container text-primary rounded-2xl p-m rounded-tr-none shadow-sm">
+<p class="font-body-md text-body-md leading-relaxed">E no total do ano?</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Input Area -->
+<div class="fixed bottom-16 left-0 right-0 p-m bg-background/80 backdrop-blur-md">
+<div class="max-w-2xl mx-auto">
+<div class="bg-surface-variant rounded-2xl p-xs flex items-center gap-xs shadow-md border border-outline-variant/20">
+<button class="p-m text-on-surface-variant hover:bg-on-surface-variant/10 rounded-xl transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface-variant placeholder:text-outline" placeholder="Pergunte algo sobre suas finanças..." type="text"/>
+<button class="p-m bg-primary text-on-primary rounded-xl flex items-center justify-center hover:scale-[1.02] active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-800 shadow-[0_-1px_3px_0_rgba(0,0,0,0.05)]">
+<button class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 px-3 py-1 scale-95 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Work_Sans'] text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 px-3 py-1 scale-95 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-['Work_Sans'] text-[10px] font-medium">Wealth</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-green-50 dark:bg-green-900/20 text-green-900 dark:text-green-400 rounded-2xl px-3 py-1 scale-95 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-['Work_Sans'] text-[10px] font-medium">Assistant</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 px-3 py-1 scale-95 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Work_Sans'] text-[10px] font-medium">Profile</span>
+</button>
+</nav>
+</body></html>

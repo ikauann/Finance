@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#90d689",
+                    "tertiary-container": "#883454",
+                    "primary": "#00450d",
+                    "on-secondary": "#FFFFFF",
+                    "dark-surface": "#1E1E1E",
+                    "secondary-fixed-dim": "#ffb691",
+                    "primary-container": "#C8E6C9",
+                    "inverse-primary": "#91d78a",
+                    "outline-variant": "#c0c9bb",
+                    "on-primary": "#FFFFFF",
+                    "surface-variant": "#e0e4db",
+                    "on-tertiary": "#FFFFFF",
+                    "surface-dim": "#d8dbd2",
+                    "primary-fixed": "#acf4a4",
+                    "outline": "#717a6d",
+                    "on-secondary-container": "#E65100",
+                    "dark-primary": "#81C784",
+                    "secondary-container": "#fb6d00",
+                    "on-surface": "#1C1B1F",
+                    "primary-fixed-dim": "#91d78a",
+                    "tertiary-fixed-dim": "#ffb1c8",
+                    "background": "#FAFAFA",
+                    "surface-bright": "#f7fbf1",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffd9e2",
+                    "on-primary-fixed-variant": "#0c5216",
+                    "secondary-fixed": "#ffdbcb",
+                    "surface-container-high": "#e6e9e0",
+                    "on-surface-variant": "#41493e",
+                    "surface": "#FFFFFF",
+                    "inverse-on-surface": "#eff2e9",
+                    "on-tertiary-container": "#01579B",
+                    "on-tertiary-fixed": "#3e001d",
+                    "on-background": "#191d17",
+                    "inverse-surface": "#2d322c",
+                    "on-error": "#FFFFFF",
+                    "surface-container-highest": "#e0e4db",
+                    "surface-container": "#ecefe6",
+                    "error": "#B00020",
+                    "secondary": "#9e4200",
+                    "surface-tint": "#2a6b2c",
+                    "on-primary-fixed": "#002203",
+                    "on-secondary-fixed": "#341100",
+                    "on-tertiary-fixed-variant": "#7a2949",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#793100",
+                    "dark-background": "#121212",
+                    "surface-container-low": "#f2f5ec",
+                    "tertiary": "#0277BD",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "8px",
+                    "xl": "12px",
+                    "2xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "xxl": "48px",
+                    "l": "24px",
+                    "m": "16px",
+                    "s": "12px",
+                    "xxs": "4px",
+                    "xs": "8px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Work Sans"],
+                    "display-lg": ["Work Sans"],
+                    "title-md": ["Work Sans"],
+                    "body-sm": ["Work Sans"],
+                    "display-sm": ["Work Sans"],
+                    "headline-md": ["Work Sans"],
+                    "display-md": ["Work Sans"],
+                    "body-lg": ["Work Sans"],
+                    "label-lg": ["Work Sans"],
+                    "title-lg": ["Work Sans"],
+                    "label-md": ["Work Sans"],
+                    "body-md": ["Work Sans"],
+                    "headline-lg": ["Work Sans"],
+                    "label-sm": ["Work Sans"],
+                    "title-sm": ["Work Sans"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Work Sans', sans-serif; }
+        .donut-segment { transition: stroke-dashoffset 0.35s; transform: rotate(-90deg); transform-origin: 50% 50%; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none docked full-width top-0 z-40 fixed">
+<div class="flex items-center justify-between px-4 h-16 w-full">
+<h1 class="font-['Work_Sans'] text-lg font-bold text-green-900 dark:text-green-50 tracking-tight">Finance App</h1>
+<button class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-150 p-2 rounded-full flex items-center justify-center text-green-900 dark:text-green-400">
+<span class="material-symbols-outlined" data-icon="EmojiEvents">emoji_events</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-m space-y-l max-w-2xl mx-auto">
+<!-- Dashboard Title -->
+<section>
+<h2 class="font-headline-md text-headline-md text-on-surface">Resumo Financeiro</h2>
+</section>
+<!-- Saldo do Mês Card -->
+<section class="bg-primary-container text-primary rounded-2xl p-l shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20">
+<div class="flex flex-col gap-xs">
+<span class="font-title-sm text-title-sm opacity-80 flex items-center gap-xxs">💵 Saldo do Mês</span>
+<div class="flex items-baseline justify-between">
+<span class="font-display-sm text-display-sm font-bold tracking-tight">R$ 2.345,80</span>
+</div>
+<div class="flex items-center gap-xxs mt-xxs">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="trending_up">trending_up</span>
+<span class="font-label-md text-label-md font-bold">+12% vs mês anterior</span>
+</div>
+</div>
+</section>
+<!-- Receitas & Despesas -->
+<section class="grid grid-cols-2 gap-m">
+<div class="bg-surface border border-outline-variant/30 rounded-xl p-m shadow-sm">
+<div class="flex flex-col gap-xxs">
+<span class="font-label-sm text-label-sm text-outline">RECEITAS</span>
+<span class="font-title-md text-title-md text-primary-fixed-dim font-bold">📈 R$ 8.500</span>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant/30 rounded-xl p-m shadow-sm">
+<div class="flex flex-col gap-xxs">
+<span class="font-label-sm text-label-sm text-outline">DESPESAS</span>
+<span class="font-title-md text-title-md text-error font-bold">📉 R$ 6.154,20</span>
+</div>
+</div>
+</section>
+<!-- Gastos por Categoria -->
+<section class="space-y-m">
+<h3 class="font-title-md text-title-md text-on-surface">Gastos por Categoria</h3>
+<div class="bg-surface rounded-2xl p-l border border-outline-variant/30 shadow-sm flex flex-col md:flex-row items-center gap-l">
+<div class="relative w-40 h-40">
+<svg class="w-full h-full" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#f2f2f2" stroke-width="3"></circle>
+<!-- Mobilidade 35% -->
+<circle class="donut-segment" cx="18" cy="18" fill="transparent" r="15.915" stroke="#00450d" stroke-dasharray="35 65" stroke-dashoffset="0" stroke-width="4"></circle>
+<!-- Alimentação 25% -->
+<circle class="donut-segment" cx="18" cy="18" fill="transparent" r="15.915" stroke="#9e4200" stroke-dasharray="25 75" stroke-dashoffset="-35" stroke-width="4"></circle>
+<!-- Saúde 20% -->
+<circle class="donut-segment" cx="18" cy="18" fill="transparent" r="15.915" stroke="#0277BD" stroke-dasharray="20 80" stroke-dashoffset="-60" stroke-width="4"></circle>
+<!-- Relacionamento 12% -->
+<circle class="donut-segment" cx="18" cy="18" fill="transparent" r="15.915" stroke="#883454" stroke-dasharray="12 88" stroke-dashoffset="-80" stroke-width="4"></circle>
+<!-- Moradia 8% -->
+<circle class="donut-segment" cx="18" cy="18" fill="transparent" r="15.915" stroke="#717a6d" stroke-dasharray="8 92" stroke-dashoffset="-92" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-label-sm text-outline">TOTAL</span>
+<span class="font-title-sm font-bold">100%</span>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-1 gap-xs w-full">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-s"><div class="w-3 h-3 rounded-full bg-primary"></div><span class="font-body-md">Mobilidade</span></div>
+<span class="font-label-md font-bold">35%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-s"><div class="w-3 h-3 rounded-full bg-secondary"></div><span class="font-body-md">Alimentação</span></div>
+<span class="font-label-md font-bold">25%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-s"><div class="w-3 h-3 rounded-full bg-tertiary"></div><span class="font-body-md">Saúde</span></div>
+<span class="font-label-md font-bold">20%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-s"><div class="w-3 h-3 rounded-full bg-tertiary-container"></div><span class="font-body-md">Relacionamento</span></div>
+<span class="font-label-md font-bold">12%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-s"><div class="w-3 h-3 rounded-full bg-outline"></div><span class="font-body-md">Moradia</span></div>
+<span class="font-label-md font-bold">8%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Metas Ativas -->
+<section class="space-y-m">
+<h3 class="font-title-md text-title-md text-on-surface">Metas Ativas</h3>
+<div class="bg-tertiary-container rounded-2xl p-l text-white shadow-md relative overflow-hidden">
+<!-- Abstract Background for Premium feel -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="relative z-10 flex flex-col gap-m">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold">Fundo Suíça</span>
+<span class="font-body-sm opacity-80">CHF 1.967 de CHF 50.000</span>
+</div>
+<span class="bg-white/20 px-s py-xxs rounded-full text-label-sm">4%</span>
+</div>
+<div class="space-y-xxs">
+<div class="w-full h-2 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-white rounded-full" style="width: 4%"></div>
+</div>
+<div class="flex justify-between text-label-sm opacity-80">
+<span>Início</span>
+<span>11 meses restantes</span>
+</div>
+</div>
+<div class="bg-black/10 rounded-lg p-s border border-white/10">
+<span class="font-label-md block">Aporte necessário:</span>
+<span class="font-title-md font-bold">R$ 26.634/mês</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Alertas Pendentes -->
+<section class="space-y-m">
+<h3 class="font-title-md text-title-md text-on-surface">Alertas Pendentes</h3>
+<div class="bg-error-container text-on-error-container rounded-xl p-m border border-error/10 flex gap-m items-start shadow-sm">
+<div class="bg-white/50 p-2 rounded-lg text-error">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+<div class="flex-1 space-y-s">
+<div>
+<h4 class="font-title-sm font-bold">Troca de óleo JAC J2</h4>
+<p class="font-body-sm opacity-80">O veículo atingiu a quilometragem recomendada para manutenção.</p>
+</div>
+<div class="flex gap-s">
+<button class="bg-transparent border border-error text-error px-m py-xs rounded-lg font-label-md hover:bg-error/5 transition-colors">Adiar</button>
+<button class="bg-error text-white px-m py-xs rounded-lg font-label-md shadow-sm hover:opacity-90 transition-opacity">Concluído</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-secondary-container text-white rounded-[28px] shadow-lg flex items-center justify-center hover:opacity-90 transition-all active:scale-95 z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl flex justify-around items-center px-2 py-3 pb-safe">
+<a class="flex flex-col items-center justify-center text-green-900 dark:text-green-400 bg-green-50 dark:bg-green-900/30 rounded-lg px-4 py-1 transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-['Work_Sans'] text-[11px] font-medium">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-1 hover:text-green-700 dark:hover:text-green-300 transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-['Work_Sans'] text-[11px] font-medium">Transações</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-1 hover:text-green-700 dark:hover:text-green-300 transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-['Work_Sans'] text-[11px] font-medium">Cupom</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-1 hover:text-green-700 dark:hover:text-green-300 transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-['Work_Sans'] text-[11px] font-medium">Assistente</span>
+</a>
+</nav>
+</body></html>

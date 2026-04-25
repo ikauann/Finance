@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Transações</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#91d78a",
+                        "on-surface-variant": "#41493e",
+                        "on-secondary-container": "#562100",
+                        "primary-container": "#1b5e20",
+                        "inverse-surface": "#2d322c",
+                        "inverse-primary": "#91d78a",
+                        "on-tertiary-container": "#ffaec6",
+                        "surface-bright": "#f7fbf1",
+                        "on-primary": "#ffffff",
+                        "dark-background": "#121212",
+                        "surface": "#FFFFFF",
+                        "outline-variant": "#c0c9bb",
+                        "on-primary-container": "#90d689",
+                        "primary-fixed": "#acf4a4",
+                        "on-tertiary": "#FFFFFF",
+                        "secondary-fixed": "#ffdbcb",
+                        "dark-primary": "#81C784",
+                        "on-background": "#191d17",
+                        "surface-container-highest": "#e0e4db",
+                        "on-tertiary-fixed": "#3e001d",
+                        "on-primary-fixed": "#002203",
+                        "surface-container-high": "#e6e9e0",
+                        "on-surface": "#191d17",
+                        "tertiary-fixed-dim": "#ffb1c8",
+                        "secondary-container": "#FFE0B2",
+                        "tertiary-container": "#883454",
+                        "secondary-fixed-dim": "#ffb691",
+                        "tertiary": "#0277BD",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#FAFAFA",
+                        "on-secondary": "#FFFFFF",
+                        "on-error": "#FFFFFF",
+                        "on-primary-fixed-variant": "#0c5216",
+                        "dark-surface": "#1E1E1E",
+                        "surface-dim": "#d8dbd2",
+                        "on-secondary-fixed-variant": "#793100",
+                        "on-secondary-fixed": "#341100",
+                        "tertiary-fixed": "#ffd9e2",
+                        "primary": "#00450d",
+                        "inverse-on-surface": "#eff2e9",
+                        "surface-tint": "#2a6b2c",
+                        "secondary": "#9e4200",
+                        "surface-variant": "#e0e4db",
+                        "on-error-container": "#93000a",
+                        "outline": "#717a6d",
+                        "on-tertiary-fixed-variant": "#7a2949",
+                        "surface-container-low": "#f2f5ec",
+                        "error": "#B00020",
+                        "surface-container": "#ecefe6",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "48px",
+                        "xl": "32px",
+                        "xs": "8px",
+                        "l": "24px",
+                        "xxs": "4px",
+                        "s": "12px",
+                        "m": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Work Sans"],
+                        "title-md": ["Work Sans"],
+                        "display-md": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "display-lg": ["Work Sans"],
+                        "display-sm": ["Work Sans"],
+                        "title-lg": ["Work Sans"],
+                        "label-sm": ["Work Sans"],
+                        "label-md": ["Work Sans"],
+                        "title-sm": ["Work Sans"],
+                        "label-lg": ["Work Sans"],
+                        "body-sm": ["Work Sans"],
+                        "headline-sm": ["Work Sans"],
+                        "headline-md": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "display-md": ["45px", {"lineHeight": "52px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "fontWeight": "700"}],
+                        "display-sm": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "label-sm": ["11px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "title-sm": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FAFAFA;
+            font-family: 'Work Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-white shadow-sm border-b border-zinc-100">
+<div class="flex items-center gap-4">
+<button class="p-2 text-green-900 active:opacity-70 transition-opacity hover:bg-zinc-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Work_Sans'] font-semibold text-lg tracking-tight text-green-900">Transações</h1>
+</div>
+<button class="p-2 text-green-900 active:opacity-70 transition-opacity hover:bg-zinc-50 rounded-full">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+</header>
+<main class="pt-20 px-4">
+<!-- SearchBar -->
+<div class="mb-m">
+<div class="relative flex items-center bg-surface-container-low rounded-[28px] px-4 py-3 shadow-sm border border-transparent focus-within:border-outline transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-3" data-icon="search">search</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 w-full font-body-md text-on-surface placeholder:text-on-surface-variant" placeholder="Buscar transações..." type="text"/>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex overflow-x-auto gap-xs pb-m hide-scrollbar -mx-4 px-4">
+<button class="flex-none px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg whitespace-nowrap active:scale-95 transition-transform">
+                Todas
+            </button>
+<button class="flex-none px-4 py-2 bg-surface border border-outline-variant text-on-surface-variant rounded-lg font-label-lg whitespace-nowrap active:scale-95 transition-transform">
+                Receitas
+            </button>
+<button class="flex-none px-4 py-2 bg-surface border border-outline-variant text-on-surface-variant rounded-lg font-label-lg whitespace-nowrap active:scale-95 transition-transform">
+                Despesas
+            </button>
+<button class="flex-none px-4 py-2 bg-surface border border-outline-variant text-on-surface-variant rounded-lg font-label-lg whitespace-nowrap active:scale-95 transition-transform">
+                Este Mês
+            </button>
+</div>
+<!-- Transaction List -->
+<div class="space-y-4">
+<!-- Header Today -->
+<div class="sticky top-16 z-40 bg-background/95 backdrop-blur-sm py-2">
+<h2 class="font-title-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="calendar_today">calendar_today</span>
+                    Hoje - 25 Abr 2026
+                </h2>
+</div>
+<!-- Item 1 -->
+<div class="bg-surface rounded-xl p-m shadow-sm border border-zinc-50 flex items-center gap-4 hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-2xl">
+                    🚗
+                </div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-on-surface">Gasolina Shell</h3>
+<span class="font-title-md text-error">-R$ 287,50</span>
+</div>
+<div class="flex justify-between items-center mt-1">
+<span class="font-body-sm text-on-surface-variant">Mobilidade • Combustível</span>
+<span class="font-label-sm text-outline">14:32</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface rounded-xl p-m shadow-sm border border-zinc-50 flex items-center gap-4 hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-2xl">
+                    💪
+                </div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-on-surface">Academia SmartFit</h3>
+<span class="font-title-md text-error">-R$ 89,90</span>
+</div>
+<div class="flex justify-between items-center mt-1">
+<span class="font-body-sm text-on-surface-variant">Saúde • Mensalidade</span>
+<span class="font-label-sm text-outline">09:15</span>
+</div>
+</div>
+</div>
+<!-- Header Yesterday -->
+<div class="sticky top-16 z-40 bg-background/95 backdrop-blur-sm py-2 mt-l">
+<h2 class="font-title-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="calendar_today">calendar_today</span>
+                    Ontem - 24 Abr 2026
+                </h2>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface rounded-xl p-m shadow-sm border border-zinc-50 flex items-center gap-4 hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed-dim/20 flex items-center justify-center text-2xl">
+                    💼
+                </div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-on-surface">Salário</h3>
+<span class="font-title-md text-primary">+R$ 5.200,00</span>
+</div>
+<div class="flex justify-between items-center mt-1">
+<span class="font-body-sm text-on-surface-variant">Receitas • Salário</span>
+<span class="font-label-sm text-outline">18:00</span>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="bg-surface rounded-xl p-m shadow-sm border border-zinc-50 flex items-center gap-4 hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-2xl">
+                    ❤️
+                </div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-on-surface">Flores para Namorada</h3>
+<span class="font-title-md text-error">-R$ 120,00</span>
+</div>
+<div class="flex flex-col mt-1">
+<span class="font-body-sm text-on-surface-variant">Relacionamento</span>
+<div class="flex gap-2 mt-2">
+<span class="px-2 py-0.5 bg-surface-container-high rounded-full font-label-sm text-outline">#namorada</span>
+<span class="px-2 py-0.5 bg-surface-container-high rounded-full font-label-sm text-outline">#flores</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-4 w-14 h-14 bg-primary text-on-primary rounded-[28px] shadow-lg flex items-center justify-center active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-white border-t border-zinc-200 pb-safe pt-2 h-16 shadow-[0_-1px_3px_0_rgba(0,0,0,0.05)]">
+<div class="flex flex-col items-center justify-center text-zinc-500 active:scale-95 transition-transform duration-200 hover:text-green-700">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Work_Sans'] text-[11px] font-medium">Início</span>
+</div>
+<div class="flex flex-col items-center justify-center text-green-800 font-bold bg-green-50 rounded-xl px-3 py-1 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="receipt_long" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-['Work_Sans'] text-[11px]">Transações</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500 active:scale-95 transition-transform duration-200 hover:text-green-700">
+<span class="material-symbols-outlined" data-icon="track_changes">track_changes</span>
+<span class="font-['Work_Sans'] text-[11px] font-medium">Metas</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500 active:scale-95 transition-transform duration-200 hover:text-green-700">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Work_Sans'] text-[11px] font-medium">Perfil</span>
+</div>
+</nav>
+</body></html>
