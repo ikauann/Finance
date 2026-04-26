@@ -73,6 +73,18 @@ class AiRepositoryImpl @Inject constructor(
                 Contexto das transações atuais do usuário:
                 $context
                 
+                Se o usuário pedir para ser lembrado de algo relacionado a veículo/manutenção/alertas, 
+                você deve incluir na sua resposta um bloco JSON com a formatação exata abaixo, ALÉM do texto normal da sua resposta:
+                ```json
+                {
+                    "action": "create_alert",
+                    "alertType": "Nome da Manutenção",
+                    "nextKm": 10000, 
+                    "nextDate": "15 dias"
+                }
+                ```
+                (Os campos nextKm e nextDate são opcionais, preencha de acordo com o pedido).
+                
                 Pergunta do usuário: $prompt
                 
                 Responda de forma concisa, direta e útil em português (Brasil).

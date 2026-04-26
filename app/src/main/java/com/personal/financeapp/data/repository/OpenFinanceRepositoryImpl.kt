@@ -7,7 +7,7 @@ import com.personal.financeapp.domain.model.Category
 import com.personal.financeapp.domain.model.Transaction
 import com.personal.financeapp.domain.model.TransactionType
 import com.personal.financeapp.domain.repository.OpenFinanceRepository
-import kotlinx.datetime.toLocalDate
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 class OpenFinanceRepositoryImpl @Inject constructor(
@@ -37,8 +37,9 @@ class OpenFinanceRepositoryImpl @Inject constructor(
         return try {
             val pluggyTransactions = api.getTransactions(PLUGGY_API_KEY, itemId)
             val transactions = pluggyTransactions.map { pt ->
+                val dateStr = pt.date.substring(0, 10)
                 Transaction(
-                    date = pt.date.substring(0, 10).toLocalDate(),
+                    date = try { LocalDateTime.parse("${dateStr}T12:00:00") } catch(e: Exception) { LocalDateTime.now() },
                     amount = Math.abs(pt.amount),
                     type = if (pt.amount < 0) TransactionType.EXPENSE else TransactionType.INCOME,
                     description = pt.description,

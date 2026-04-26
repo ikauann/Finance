@@ -5,10 +5,8 @@ import com.personal.financeapp.domain.model.TransactionType
 import com.personal.financeapp.domain.repository.AiRepository
 import com.personal.financeapp.domain.repository.TransactionRepository
 import kotlinx.coroutines.flow.first
-import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
+import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 class ProcessReceiptUseCase @Inject constructor(
@@ -24,8 +22,8 @@ class ProcessReceiptUseCase @Inject constructor(
 
             Transaction(
                 date = data.date?.let { 
-                    try { LocalDate.parse(it) } catch (e: Exception) { null }
-                } ?: Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
+                    try { LocalDate.parse(it).atStartOfDay() } catch (e: Exception) { null }
+                } ?: LocalDateTime.now(),
                 amount = data.amount,
                 type = TransactionType.EXPENSE,
                 category = category,

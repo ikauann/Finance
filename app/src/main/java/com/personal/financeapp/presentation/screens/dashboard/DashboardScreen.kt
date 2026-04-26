@@ -24,6 +24,7 @@ fun DashboardScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     var showAddDialog by remember { mutableStateOf(false) }
+    var showAddAlertDialog by remember { mutableStateOf(false) }
 
     if (showAddDialog) {
         AddTransactionDialog(
@@ -36,14 +37,26 @@ fun DashboardScreen(
         )
     }
 
+    if (showAddAlertDialog) {
+        AddAlertDialog(
+            onDismiss = { showAddAlertDialog = false },
+            onConfirm = { alert ->
+                viewModel.onEvent(DashboardEvent.AddAlert(alert))
+                showAddAlertDialog = false
+            }
+        )
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Finance App") },
+                title = { Text("Finance App", style = MaterialTheme.typography.titleLarge) },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
+                ),
                 actions = {
-                    IconButton(onClick = { navController.navigate(Screen.ConnectBank.createRoute(null)) }) {
-                        Icon(Icons.Default.AccountBalance, "Conectar Banco")
-                    }
                     IconButton(onClick = { navController.navigate(Screen.Goals.route) }) {
                         Icon(Icons.Default.EmojiEvents, "Metas")
                     }
@@ -51,38 +64,72 @@ fun DashboardScreen(
             )
         },
         bottomBar = {
-            NavigationBar {
+            val navItemColors = NavigationBarItemDefaults.colors(
+                selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                indicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            NavigationBar(
+                containerColor = MaterialTheme.colorScheme.surface,
+                tonalElevation = 3.dp,
+                modifier = Modifier.height(80.dp)
+            ) {
                 NavigationBarItem(
                     selected = true,
                     onClick = { },
-                    icon = { Icon(Icons.Default.Dashboard, "Dashboard") },
-                    label = { Text("Início") }
+                    icon = { Icon(Icons.Default.Home, "Início") },
+                    label = { Text("Início") },
+                    colors = navItemColors
                 )
                 NavigationBarItem(
                     selected = false,
                     onClick = { navController.navigate(Screen.Transactions.route) },
                     icon = { Icon(Icons.Default.List, "Transações") },
-                    label = { Text("Transações") }
+                    label = { Text("Transações") },
+                    colors = navItemColors
                 )
                 NavigationBarItem(
                     selected = false,
                     onClick = { navController.navigate(Screen.Receipt.route) },
                     icon = { Icon(Icons.Default.CameraAlt, "Cupom") },
-                    label = { Text("Cupom") }
+                    label = { Text("Cupom") },
+                    colors = navItemColors
                 )
                 NavigationBarItem(
                     selected = false,
                     onClick = { navController.navigate(Screen.Assistant.route) },
                     icon = { Icon(Icons.Default.SmartToy, "Assistente") },
-                    label = { Text("Assistente") }
+                    label = { Text("Assistente") },
+                    colors = navItemColors
                 )
             }
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { showAddDialog = true }
-            ) {
-                Icon(Icons.Default.Add, "Nova transação")
+            Box {
+                var expanded by remember { mutableStateOf(false) }
+                FloatingActionButton(
+                    onClick = { expanded = true },
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
+                    elevation = FloatingActionButtonDefaults.elevation(6.dp)
+                ) {
+                    Icon(Icons.Default.Add, "Adicionar")
+                }
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
+                    DropdownMenuItem(
+                        text = { Text("Nova Transação") },
+                        onClick = { expanded = false; showAddDialog = true }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Novo Alerta (Veículo)") },
+                        onClick = { expanded = false; showAddAlertDialog = true }
+                    )
+                }
             }
         }
     ) { paddingValues ->
@@ -107,7 +154,7 @@ fun DashboardScreen(
             SummaryCard(
                 title = "💵 Saldo do Mês",
                 amount = uiState.totalBalance,
-                variation = "↑ +12% vs mês anterior", // Exemplo fixo conforme spec
+                variation = uiState.balanceVariationString,
                 currencyFormatter = currencyFormatter
             )
 
@@ -130,7 +177,7 @@ fun DashboardScreen(
 
             if (uiState.expensesByCategory.isNotEmpty()) {
                 Text(
-                    text = "📊 Gastos por Categoria",
+                    text = "📊 Gastos por Categoria (Mês Atual)",
                     style = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -138,62 +185,41 @@ fun DashboardScreen(
                 Spacer(modifier = Modifier.height(24.dp))
             }
 
-            Text(
-                text = "Transações Recentes",
-                style = MaterialTheme.typography.titleLarge
-            )
+            if (uiState.activeGoals.isNotEmpty()) {
+                Text(
+                    text = "🎯 Metas Ativas",
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                uiState.activeGoals.forEach { goal ->
+                    GoalCard(goal = goal)
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+            }
 
-            Spacer(modifier = Modifier.height(8.dp))
-
-            if (uiState.transactions.isEmpty()) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = androidx.compose.ui.Alignment.Center) {
-                    Text("Nenhuma transação encontrada.", style = MaterialTheme.typography.bodyMedium)
+            if (uiState.alerts.isNotEmpty()) {
+                Text(
+                    text = "⚠️ Alertas Pendentes",
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                uiState.alerts.forEach { alert ->
+                    AlertCard(
+                        alert = alert,
+                        onPostpone = { viewModel.onEvent(DashboardEvent.PostponeAlert(alert.id)) },
+                        onComplete = { viewModel.onEvent(DashboardEvent.CompleteAlert(alert.id)) }
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             } else {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    uiState.transactions.take(5).forEach { transaction ->
-                        TransactionItem(transaction, currencyFormatter)
-                    }
-                }
+                Text(
+                    text = "⚠️ Nenhum alerta pendente",
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
 }
 
-@Composable
-fun TransactionItem(
-    transaction: com.personal.financeapp.domain.model.Transaction,
-    formatter: NumberFormat
-) {
-    ElevatedCard(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
-        ) {
-            Column {
-                Text(text = transaction.category.name, style = MaterialTheme.typography.titleSmall)
-                transaction.description?.let {
-                    if (it.isNotEmpty()) {
-                        Text(text = it, style = MaterialTheme.typography.bodySmall)
-                    }
-                }
-            }
-            Text(
-                text = (if (transaction.type == com.personal.financeapp.domain.model.TransactionType.EXPENSE) "-" else "+") + 
-                    formatter.format(transaction.amount),
-                color = if (transaction.type == com.personal.financeapp.domain.model.TransactionType.EXPENSE) 
-                    MaterialTheme.colorScheme.error 
-                else 
-                    MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.titleMedium
-            )
-        }
-    }
-}

@@ -14,7 +14,7 @@ import com.personal.financeapp.data.local.entity.*
         ExchangeRateEntity::class,
         VehicleAlertEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {

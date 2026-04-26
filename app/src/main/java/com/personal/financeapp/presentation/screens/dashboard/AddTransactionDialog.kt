@@ -10,9 +10,7 @@ import androidx.compose.ui.unit.dp
 import com.personal.financeapp.domain.model.Category
 import com.personal.financeapp.domain.model.Transaction
 import com.personal.financeapp.domain.model.TransactionType
-import kotlinx.datetime.Clock
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
+import java.time.LocalDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -81,7 +79,7 @@ fun AddTransactionDialog(
                     if (amountValue > 0 && selectedCategory != null) {
                         onConfirm(
                             Transaction(
-                                date = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
+                                date = LocalDateTime.now(),
                                 amount = amountValue,
                                 type = type,
                                 category = selectedCategory!!,

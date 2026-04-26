@@ -41,7 +41,7 @@ private val DarkColorScheme = darkColorScheme(
 
 @Composable
 fun FinanceAppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = false, // Forçando Light Theme para combinar com os designs
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

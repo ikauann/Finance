@@ -3,7 +3,7 @@ package com.personal.financeapp.domain.repository
 import com.personal.financeapp.domain.model.Category
 import com.personal.financeapp.domain.model.Transaction
 import kotlinx.coroutines.flow.Flow
-import kotlinx.datetime.LocalDate
+import java.time.LocalDate
 
 interface TransactionRepository {
     fun getAllTransactions(): Flow<List<Transaction>>

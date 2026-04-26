@@ -1,10 +1,10 @@
 package com.personal.financeapp.domain.model
 
-import kotlinx.datetime.LocalDate
+import java.time.LocalDateTime
 
 data class Transaction(
     val id: Long = 0,
-    val date: LocalDate,
+    val date: LocalDateTime,
     val amount: Double,
     val type: TransactionType,
     val category: Category,

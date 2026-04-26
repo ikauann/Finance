@@ -41,4 +41,10 @@ abstract class RepositoryModule {
     abstract fun bindOpenFinanceRepository(
         openFinanceRepositoryImpl: OpenFinanceRepositoryImpl
     ): OpenFinanceRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindVehicleAlertRepository(
+        vehicleAlertRepositoryImpl: com.personal.financeapp.data.repository.VehicleAlertRepositoryImpl
+    ): com.personal.financeapp.domain.repository.VehicleAlertRepository
 }

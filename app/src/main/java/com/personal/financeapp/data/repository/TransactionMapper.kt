@@ -5,13 +5,18 @@ import com.personal.financeapp.data.local.entity.TransactionEntity
 import com.personal.financeapp.domain.model.Category
 import com.personal.financeapp.domain.model.Transaction
 import com.personal.financeapp.domain.model.TransactionType
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.toLocalDate
+import java.time.LocalDateTime
 
 fun TransactionEntity.toDomain(category: CategoryEntity): Transaction {
+    val dateToUse = try {
+        LocalDateTime.parse(date)
+    } catch (e: Exception) {
+        LocalDateTime.parse("${date}T12:00:00")
+    }
+
     return Transaction(
         id = id,
-        date = date.toLocalDate(),
+        date = dateToUse,
         amount = amount,
         type = if (type == "income") TransactionType.INCOME else TransactionType.EXPENSE,
         category = category.toDomain(),

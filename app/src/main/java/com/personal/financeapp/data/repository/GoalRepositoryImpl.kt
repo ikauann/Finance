@@ -37,7 +37,21 @@ class GoalRepositoryImpl @Inject constructor(
         targetCurrency = targetCurrency,
         targetDate = targetDate,
         currentAmount = currentAmount,
-        isActive = isActive
+        isActive = isActive,
+        priority = priority,
+        monthlyContribution = monthlyContribution,
+        purpose = purpose,
+        exchangeRate = exchangeRate,
+        icon = icon,
+        color = color,
+        historicalContributions = try {
+            org.json.JSONArray(historicalContributions).let { jsonArray ->
+                List(jsonArray.length()) { jsonArray.getDouble(it) }
+            }
+        } catch (e: Exception) { emptyList() },
+        isShortfall = isShortfall,
+        shortfallAmount = shortfallAmount,
+        shortfallRecommendation = shortfallRecommendation
     )
 
     private fun Goal.toEntity() = GoalEntity(
@@ -47,6 +61,16 @@ class GoalRepositoryImpl @Inject constructor(
         targetCurrency = targetCurrency,
         targetDate = targetDate,
         currentAmount = currentAmount,
-        isActive = isActive
+        isActive = isActive,
+        priority = priority,
+        monthlyContribution = monthlyContribution,
+        purpose = purpose,
+        exchangeRate = exchangeRate,
+        icon = icon,
+        color = color,
+        historicalContributions = org.json.JSONArray(historicalContributions).toString(),
+        isShortfall = isShortfall,
+        shortfallAmount = shortfallAmount,
+        shortfallRecommendation = shortfallRecommendation
     )
 }

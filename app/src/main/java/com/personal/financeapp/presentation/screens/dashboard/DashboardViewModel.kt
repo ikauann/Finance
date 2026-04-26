@@ -13,16 +13,25 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+import java.time.LocalDate
+import java.time.YearMonth
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     getTransactionsUseCase: GetTransactionsUseCase,
     getCategoriesUseCase: GetCategoriesUseCase,
     private val addTransactionUseCase: AddTransactionUseCase,
-    private val seedDatabaseUseCase: SeedDatabaseUseCase
+    private val seedDatabaseUseCase: SeedDatabaseUseCase,
+    getActiveAlertsUseCase: com.personal.financeapp.domain.usecase.GetActiveAlertsUseCase,
+    private val completeAlertUseCase: com.personal.financeapp.domain.usecase.CompleteAlertUseCase,
+    private val postponeAlertUseCase: com.personal.financeapp.domain.usecase.PostponeAlertUseCase,
+    private val vehicleAlertRepository: com.personal.financeapp.domain.repository.VehicleAlertRepository,
+    private val goalRepository: com.personal.financeapp.domain.repository.GoalRepository
 ) : ViewModel() {
 
     init {
@@ -34,14 +43,45 @@ class DashboardViewModel @Inject constructor(
     val uiState: StateFlow<DashboardUiState> = combine(
         getTransactionsUseCase(),
         getCategoriesUseCase(),
+        getActiveAlertsUseCase(),
+        goalRepository.getAllGoals(),
         _isLoading
-    ) { transactions, categories, isLoading ->
+    ) { transactions: List<Transaction>, categories: List<com.personal.financeapp.domain.model.Category>, alerts: List<com.personal.financeapp.domain.model.VehicleAlert>, goals: List<com.personal.financeapp.domain.model.Goal>, isLoading: Boolean ->
+        
+        val currentYearMonth = YearMonth.now()
+        val previousYearMonth = currentYearMonth.minusMonths(1)
+
+        val balanceUpToLastMonth = transactions.filter {
+            try {
+                YearMonth.of(it.date.year, it.date.monthValue) <= previousYearMonth
+            } catch (e: Exception) {
+                false
+            }
+        }.sumOf { if (it.type == com.personal.financeapp.domain.model.TransactionType.INCOME) it.amount else -it.amount }
+
+        val currentTotalBalance = transactions.sumOf { 
+            if (it.type == com.personal.financeapp.domain.model.TransactionType.INCOME) it.amount else -it.amount 
+        }
+
+        val variation = if (balanceUpToLastMonth != 0.0) {
+            ((currentTotalBalance - balanceUpToLastMonth) / Math.abs(balanceUpToLastMonth)) * 100.0
+        } else {
+            0.0
+        }
+        
+        val variationStr = if (variation >= 0) {
+            "↑ +${String.format("%.0f", variation)}% vs mês anterior"
+        } else {
+            "↓ ${String.format("%.0f", variation)}% vs mês anterior"
+        }
+
         DashboardUiState(
             transactions = transactions,
             categories = categories,
-            totalBalance = transactions.sumOf { 
-                if (it.type == com.personal.financeapp.domain.model.TransactionType.INCOME) it.amount else -it.amount 
-            },
+            alerts = alerts,
+            activeGoals = goals,
+            totalBalance = currentTotalBalance,
+            balanceVariationString = variationStr,
             expensesByCategory = transactions
                 .filter { it.type == com.personal.financeapp.domain.model.TransactionType.EXPENSE }
                 .groupBy { it.category.name }
@@ -67,6 +107,21 @@ class DashboardViewModel @Inject constructor(
                     addTransactionUseCase(event.transaction)
                 }
             }
+            is DashboardEvent.CompleteAlert -> {
+                viewModelScope.launch {
+                    completeAlertUseCase(event.alertId)
+                }
+            }
+            is DashboardEvent.PostponeAlert -> {
+                viewModelScope.launch {
+                    postponeAlertUseCase(event.alertId)
+                }
+            }
+            is DashboardEvent.AddAlert -> {
+                viewModelScope.launch {
+                    vehicleAlertRepository.insertAlert(event.alert)
+                }
+            }
         }
     }
 }
@@ -74,7 +129,10 @@ class DashboardViewModel @Inject constructor(
 data class DashboardUiState(
     val transactions: List<Transaction> = emptyList(),
     val categories: List<com.personal.financeapp.domain.model.Category> = emptyList(),
+    val alerts: List<com.personal.financeapp.domain.model.VehicleAlert> = emptyList(),
+    val activeGoals: List<com.personal.financeapp.domain.model.Goal> = emptyList(),
     val totalBalance: Double = 0.0,
+    val balanceVariationString: String = "0% vs mês anterior",
     val expensesByCategory: Map<String, Double> = emptyMap(),
     val isLoading: Boolean = false
 )

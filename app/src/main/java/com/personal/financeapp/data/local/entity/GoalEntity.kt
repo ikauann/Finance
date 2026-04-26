@@ -24,5 +24,31 @@ data class GoalEntity(
     val currentAmount: Double = 0.0,
     
     @ColumnInfo(name = "is_active")
-    val isActive: Boolean = true
+    val isActive: Boolean = true,
+    
+    val priority: String = "Média",
+    
+    @ColumnInfo(name = "monthly_contribution")
+    val monthlyContribution: Double = 0.0,
+    
+    val purpose: String = "",
+    
+    @ColumnInfo(name = "exchange_rate")
+    val exchangeRate: Double = 1.0,
+    
+    val icon: String = "🎯",
+    
+    val color: String = "#2196F3",
+    
+    @ColumnInfo(name = "historical_contributions")
+    val historicalContributions: String = "[]", // JSON array
+    
+    @ColumnInfo(name = "is_shortfall")
+    val isShortfall: Boolean = false,
+    
+    @ColumnInfo(name = "shortfall_amount")
+    val shortfallAmount: Double = 0.0,
+    
+    @ColumnInfo(name = "shortfall_recommendation")
+    val shortfallRecommendation: String = ""
 )

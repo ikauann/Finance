@@ -9,9 +9,12 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+import com.personal.financeapp.domain.usecase.AnalyzeGoalUseCase
+
 @HiltViewModel
 class GoalsViewModel @Inject constructor(
-    private val repository: GoalRepository
+    private val repository: GoalRepository,
+    private val analyzeGoalUseCase: AnalyzeGoalUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(GoalsUiState())
@@ -26,9 +29,11 @@ class GoalsViewModel @Inject constructor(
             repository.getAllGoals()
                 .onStart { _uiState.update { it.copy(isLoading = true) } }
                 .collect { goals ->
+                    val analyzed = analyzeGoalUseCase(goals)
                     _uiState.update { 
                         it.copy(
-                            goals = goals,
+                            activeGoals = analyzed.filter { a -> a.rawGoal.isActive },
+                            completedGoals = analyzed.filter { a -> !a.rawGoal.isActive },
                             isLoading = false
                         ) 
                     }
@@ -57,6 +62,7 @@ class GoalsViewModel @Inject constructor(
 }
 
 data class GoalsUiState(
-    val goals: List<Goal> = emptyList(),
+    val activeGoals: List<com.personal.financeapp.domain.usecase.AnalyzedGoal> = emptyList(),
+    val completedGoals: List<com.personal.financeapp.domain.usecase.AnalyzedGoal> = emptyList(),
     val isLoading: Boolean = false
 )
