@@ -18,8 +18,12 @@ class GoalRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun insertGoal(goal: Goal) {
-        goalDao.insertGoal(goal.toEntity())
+    override suspend fun insertGoal(goal: Goal): Long {
+        return goalDao.insertGoal(goal.toEntity())
+    }
+
+    override suspend fun updateGoal(goal: Goal) {
+        goalDao.updateGoal(goal.toEntity())
     }
 
     override suspend fun deleteGoal(goal: Goal) {
@@ -28,6 +32,10 @@ class GoalRepositoryImpl @Inject constructor(
 
     override suspend fun addValueToGoal(goalId: Long, amount: Double) {
         goalDao.addValueToGoal(goalId, amount)
+    }
+
+    override suspend fun resetAllData() {
+        goalDao.deleteAllGoals()
     }
 
     private fun GoalEntity.toDomain() = Goal(

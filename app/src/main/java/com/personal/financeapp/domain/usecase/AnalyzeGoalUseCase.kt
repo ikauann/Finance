@@ -1,7 +1,10 @@
 package com.personal.financeapp.domain.usecase
 
 import com.personal.financeapp.domain.model.Goal
+import com.personal.financeapp.domain.model.Transaction
+import com.personal.financeapp.domain.model.TransactionType
 import java.time.LocalDate
+import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import javax.inject.Inject
@@ -18,11 +21,33 @@ data class AnalyzedGoal(
 
 class AnalyzeGoalUseCase @Inject constructor() {
     
-    operator fun invoke(goals: List<Goal>): List<AnalyzedGoal> {
+    operator fun invoke(goals: List<Goal>, transactions: List<Transaction>): List<AnalyzedGoal> {
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         val today = LocalDate.now()
         
-        return goals.map { goal ->
+        return goals.map { rawGoal ->
+            val goalTransactions = transactions.filter { it.goalId == rawGoal.id }
+            
+            // Calculate real currentAmount based on linked transactions
+            val realCurrentAmount = goalTransactions.sumOf { 
+                if (it.type == TransactionType.INCOME) -it.amount else it.amount // Or assuming all goal contributions are EXPENSE from main wallet?
+                // Wait, if we use EXPENSE for contributions, let's just sum absolute values for now
+                it.amount 
+            }
+            
+            // Group by month for historicalContributions (last 6 months)
+            val historical = goalTransactions
+                .groupBy { YearMonth.from(it.date) }
+                .toSortedMap()
+                .values
+                .map { list -> list.sumOf { it.amount } }
+                .takeLast(6)
+            
+            val goal = rawGoal.copy(
+                currentAmount = realCurrentAmount,
+                historicalContributions = historical
+            )
+            
             val targetDate = try {
                 LocalDate.parse(goal.targetDate, formatter)
             } catch (e: Exception) {

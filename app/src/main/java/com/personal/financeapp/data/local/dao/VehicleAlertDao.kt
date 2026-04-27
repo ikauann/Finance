@@ -17,4 +17,7 @@ interface VehicleAlertDao {
     
     @Query("UPDATE vehicle_alerts SET is_dismissed = 1 WHERE id = :alertId")
     suspend fun dismissAlert(alertId: Long)
+
+    @Query("DELETE FROM vehicle_alerts")
+    suspend fun deleteAllAlerts()
 }

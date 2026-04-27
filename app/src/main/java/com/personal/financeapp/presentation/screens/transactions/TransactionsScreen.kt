@@ -74,47 +74,7 @@ fun TransactionsScreen(
             )
         },
         bottomBar = {
-            val navItemColors = NavigationBarItemDefaults.colors(
-                selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                indicatorColor = MaterialTheme.colorScheme.primaryContainer,
-                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            NavigationBar(
-                containerColor = MaterialTheme.colorScheme.surface,
-                tonalElevation = 3.dp,
-                modifier = Modifier.height(80.dp)
-            ) {
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { navController.navigate(Screen.Dashboard.route) { popUpTo(0) } },
-                    icon = { Icon(Icons.Default.Home, "Início") },
-                    label = { Text("Início") },
-                    colors = navItemColors
-                )
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { },
-                    icon = { Icon(Icons.Default.List, "Transações") },
-                    label = { Text("Transações") },
-                    colors = navItemColors
-                )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { navController.navigate(Screen.Receipt.route) },
-                    icon = { Icon(Icons.Default.CameraAlt, "Cupom") },
-                    label = { Text("Cupom") },
-                    colors = navItemColors
-                )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { navController.navigate(Screen.Assistant.route) },
-                    icon = { Icon(Icons.Default.SmartToy, "Assistente") },
-                    label = { Text("Assistente") },
-                    colors = navItemColors
-                )
-            }
+            com.personal.financeapp.presentation.components.BottomNavigationBar(navController)
         },
         floatingActionButton = {
             FloatingActionButton(

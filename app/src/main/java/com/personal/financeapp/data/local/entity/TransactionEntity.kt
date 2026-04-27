@@ -41,7 +41,10 @@ data class TransactionEntity(
     val receiptImagePath: String? = null,
     
     @ColumnInfo(name = "created_at")
-    val createdAt: String = Instant.DISTANT_PAST.toString()
+    val createdAt: String = Instant.DISTANT_PAST.toString(),
+    
+    @ColumnInfo(name = "goal_id")
+    val goalId: Long? = null
 )
 
 @Entity(tableName = "categories")

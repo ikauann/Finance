@@ -90,6 +90,9 @@ fun ReceiptScanScreen(
                     }
                 }
             )
+        },
+        bottomBar = {
+            com.personal.financeapp.presentation.components.BottomNavigationBar(navController)
         }
     ) { paddingValues ->
         Box(

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.personal.financeapp.domain.model.Goal
 import com.personal.financeapp.domain.repository.GoalRepository
+import com.personal.financeapp.domain.repository.TransactionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ import com.personal.financeapp.domain.usecase.AnalyzeGoalUseCase
 @HiltViewModel
 class GoalsViewModel @Inject constructor(
     private val repository: GoalRepository,
+    private val transactionRepository: TransactionRepository,
     private val analyzeGoalUseCase: AnalyzeGoalUseCase
 ) : ViewModel() {
 
@@ -26,10 +28,12 @@ class GoalsViewModel @Inject constructor(
 
     private fun loadGoals() {
         viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
             repository.getAllGoals()
-                .onStart { _uiState.update { it.copy(isLoading = true) } }
-                .collect { goals ->
-                    val analyzed = analyzeGoalUseCase(goals)
+                .combine(transactionRepository.getAllTransactions()) { goals, transactions ->
+                    analyzeGoalUseCase(goals, transactions)
+                }
+                .collect { analyzed ->
                     _uiState.update { 
                         it.copy(
                             activeGoals = analyzed.filter { a -> a.rawGoal.isActive },
@@ -41,16 +45,15 @@ class GoalsViewModel @Inject constructor(
         }
     }
 
-    fun addGoal(name: String, target: Double) {
+    fun addGoal(goal: Goal) {
         viewModelScope.launch {
-            repository.insertGoal(
-                Goal(
-                    name = name,
-                    targetAmount = target,
-                    targetCurrency = "BRL",
-                    targetDate = "2024-12-31" // Default or selected date
-                )
-            )
+            repository.insertGoal(goal)
+        }
+    }
+
+    fun updateGoal(goal: Goal) {
+        viewModelScope.launch {
+            repository.updateGoal(goal)
         }
     }
 

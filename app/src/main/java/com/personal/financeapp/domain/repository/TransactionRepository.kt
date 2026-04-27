@@ -21,4 +21,6 @@ interface TransactionRepository {
     fun getAllCategories(): Flow<List<Category>>
     
     suspend fun insertCategories(categories: List<Category>)
+
+    suspend fun resetAllData()
 }

@@ -6,6 +6,7 @@ import com.personal.financeapp.domain.model.Category
 import com.personal.financeapp.domain.model.Transaction
 import com.personal.financeapp.domain.repository.TransactionRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.time.LocalDate
@@ -17,10 +18,12 @@ class TransactionRepositoryImpl @Inject constructor(
 ) : TransactionRepository {
 
     override fun getAllTransactions(): Flow<List<Transaction>> {
-        return transactionDao.getAllTransactions().map { entities ->
-            entities.map { entity ->
-                val category = categoryDao.getCategoryById(entity.categoryId)
-                entity.toDomain(category!!)
+        return transactionDao.getAllTransactions().combine(categoryDao.getAllCategories()) { entities, categories ->
+            val categoryMap = categories.associateBy { it.id }
+            entities.mapNotNull { entity ->
+                categoryMap[entity.categoryId]?.let { categoryEntity ->
+                    entity.toDomain(categoryEntity)
+                }
             }
         }
     }
@@ -29,17 +32,20 @@ class TransactionRepositoryImpl @Inject constructor(
         val entity = transactionDao.getTransactionById(id)
         return entity?.let {
             val category = categoryDao.getCategoryById(it.categoryId)
-            it.toDomain(category!!)
+            category?.let { cat -> it.toDomain(cat) }
         }
     }
 
     override fun getTransactionsByDateRange(startDate: LocalDate, endDate: LocalDate): Flow<List<Transaction>> {
-        return transactionDao.getTransactionsByDateRange(startDate.toString(), endDate.toString()).map { entities ->
-            entities.map { entity ->
-                val category = categoryDao.getCategoryById(entity.categoryId)
-                entity.toDomain(category!!)
+        return transactionDao.getTransactionsByDateRange(startDate.toString(), endDate.toString())
+            .combine(categoryDao.getAllCategories()) { entities, categories ->
+                val categoryMap = categories.associateBy { it.id }
+                entities.mapNotNull { entity ->
+                    categoryMap[entity.categoryId]?.let { categoryEntity ->
+                        entity.toDomain(categoryEntity)
+                    }
+                }
             }
-        }
     }
 
     override suspend fun insertTransaction(transaction: Transaction): Long {
@@ -62,5 +68,10 @@ class TransactionRepositoryImpl @Inject constructor(
 
     override suspend fun insertCategories(categories: List<Category>) {
         categoryDao.insertCategories(categories.map { it.toEntity() })
+    }
+
+    override suspend fun resetAllData() {
+        transactionDao.deleteAllTransactions()
+        transactionDao.deleteAllCategories()
     }
 }

@@ -51,60 +51,19 @@ fun DashboardScreen(
         topBar = {
             TopAppBar(
                 title = { Text("Finance App", style = MaterialTheme.typography.titleLarge) },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
-                ),
                 actions = {
-                    IconButton(onClick = { navController.navigate(Screen.Goals.route) }) {
-                        Icon(Icons.Default.EmojiEvents, "Metas")
+                    IconButton(onClick = { navController.navigate(Screen.ConnectBank.route) }) {
+                        Icon(
+                            imageVector = Icons.Default.AccountBalance,
+                            contentDescription = "Conectar Banco",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
                     }
                 }
             )
         },
         bottomBar = {
-            val navItemColors = NavigationBarItemDefaults.colors(
-                selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                indicatorColor = MaterialTheme.colorScheme.primaryContainer,
-                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            NavigationBar(
-                containerColor = MaterialTheme.colorScheme.surface,
-                tonalElevation = 3.dp,
-                modifier = Modifier.height(80.dp)
-            ) {
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { },
-                    icon = { Icon(Icons.Default.Home, "Início") },
-                    label = { Text("Início") },
-                    colors = navItemColors
-                )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { navController.navigate(Screen.Transactions.route) },
-                    icon = { Icon(Icons.Default.List, "Transações") },
-                    label = { Text("Transações") },
-                    colors = navItemColors
-                )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { navController.navigate(Screen.Receipt.route) },
-                    icon = { Icon(Icons.Default.CameraAlt, "Cupom") },
-                    label = { Text("Cupom") },
-                    colors = navItemColors
-                )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { navController.navigate(Screen.Assistant.route) },
-                    icon = { Icon(Icons.Default.SmartToy, "Assistente") },
-                    label = { Text("Assistente") },
-                    colors = navItemColors
-                )
-            }
+            com.personal.financeapp.presentation.components.BottomNavigationBar(navController)
         },
         floatingActionButton = {
             Box {

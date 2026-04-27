@@ -24,6 +24,9 @@ interface GoalDao {
     @Delete
     suspend fun deleteGoal(goal: GoalEntity)
 
+    @Query("DELETE FROM goals")
+    suspend fun deleteAllGoals()
+
     @Query("UPDATE goals SET current_amount = current_amount + :amount WHERE id = :goalId")
     suspend fun addValueToGoal(goalId: Long, amount: Double)
 }

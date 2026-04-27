@@ -1,12 +1,15 @@
 package com.personal.financeapp.domain.repository
 
+import com.personal.financeapp.data.local.entity.ConnectedItemEntity
 import com.personal.financeapp.domain.model.Transaction
-import kotlinx.coroutines.flow.Flow
 
 interface OpenFinanceRepository {
-    // Retorna a URL para o usuário abrir o Widget de conexão do banco
-    suspend fun getConnectWidgetUrl(): Result<String>
+    // Retorna o connectToken para inicializar o Pluggy Connect Widget via JS SDK
+    suspend fun getConnectToken(): Result<String>
     
-    // Sincroniza as transações de uma conta conectada
-    suspend fun syncAccountTransactions(accountId: String): Result<List<Transaction>>
+    // Salva a conexão e sincroniza as transações de todas as contas do Item
+    suspend fun saveAndSyncItem(itemId: String): Result<List<Transaction>>
+
+    // Retorna os itens conectados salvos localmente
+    suspend fun getConnectedItems(): List<ConnectedItemEntity>
 }

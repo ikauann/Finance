@@ -36,6 +36,9 @@ interface TransactionDao {
     
     @Query("DELETE FROM transactions")
     suspend fun deleteAllTransactions()
+
+    @Query("DELETE FROM categories")
+    suspend fun deleteAllCategories()
     
     // Query customizada para Text-to-SQL
     @RawQuery

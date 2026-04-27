@@ -12,9 +12,10 @@ import com.personal.financeapp.data.local.entity.*
         SubcategoryEntity::class,
         GoalEntity::class,
         ExchangeRateEntity::class,
-        VehicleAlertEntity::class
+        VehicleAlertEntity::class,
+        ConnectedItemEntity::class
     ],
-    version = 2,
+    version = 5,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -23,6 +24,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun goalDao(): GoalDao
     abstract fun exchangeRateDao(): ExchangeRateDao
     abstract fun vehicleAlertDao(): VehicleAlertDao
+    abstract fun connectedItemDao(): ConnectedItemDao
     
     companion object {
         const val DATABASE_NAME = "finance_app.db"

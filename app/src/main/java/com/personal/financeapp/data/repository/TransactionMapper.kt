@@ -22,7 +22,8 @@ fun TransactionEntity.toDomain(category: CategoryEntity): Transaction {
         category = category.toDomain(),
         description = description,
         tags = tags?.split(",")?.map { it.trim() } ?: emptyList(),
-        receiptImagePath = receiptImagePath
+        receiptImagePath = receiptImagePath,
+        goalId = goalId
     )
 }
 
@@ -44,7 +45,8 @@ fun Transaction.toEntity(): TransactionEntity {
         categoryId = category.id,
         description = description,
         tags = if (tags.isEmpty()) null else tags.joinToString(","),
-        receiptImagePath = receiptImagePath
+        receiptImagePath = receiptImagePath,
+        goalId = goalId
     )
 }
 

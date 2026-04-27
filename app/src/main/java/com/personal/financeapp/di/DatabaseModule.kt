@@ -51,4 +51,9 @@ object DatabaseModule {
     fun provideVehicleAlertDao(database: AppDatabase): VehicleAlertDao {
         return database.vehicleAlertDao()
     }
+
+    @Provides
+    fun provideConnectedItemDao(database: AppDatabase): ConnectedItemDao {
+        return database.connectedItemDao()
+    }
 }

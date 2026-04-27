@@ -2,6 +2,7 @@ package com.personal.financeapp.presentation.screens.dashboard
 
 sealed class DashboardEvent {
     object SeedDatabase : DashboardEvent()
+    object ResetDatabase : DashboardEvent()
     data class AddTransaction(val transaction: com.personal.financeapp.domain.model.Transaction) : DashboardEvent()
     data class CompleteAlert(val alertId: Long) : DashboardEvent()
     data class PostponeAlert(val alertId: Long) : DashboardEvent()

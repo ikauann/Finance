@@ -19,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AssistantScreen(
+    navController: androidx.navigation.NavController,
     viewModel: AssistantViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -33,6 +34,9 @@ fun AssistantScreen(
                     titleContentColor = Color.White
                 )
             )
+        },
+        bottomBar = {
+            com.personal.financeapp.presentation.components.BottomNavigationBar(navController)
         }
     ) { padding ->
         Column(

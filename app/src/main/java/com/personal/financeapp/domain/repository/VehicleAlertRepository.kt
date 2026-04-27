@@ -8,4 +8,5 @@ interface VehicleAlertRepository {
     suspend fun insertAlert(alert: VehicleAlert): Long
     suspend fun updateAlert(alert: VehicleAlert)
     suspend fun dismissAlert(alertId: Long)
+    suspend fun resetAllData()
 }

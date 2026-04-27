@@ -40,7 +40,7 @@ fun AppNavGraph(navController: NavHostController) {
             ReceiptScanScreen(navController)
         }
         composable(Screen.Assistant.route) {
-            AssistantScreen()
+            AssistantScreen(navController)
         }
         composable(Screen.Goals.route) {
             GoalsScreen(navController)

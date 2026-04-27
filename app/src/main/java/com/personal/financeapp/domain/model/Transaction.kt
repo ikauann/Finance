@@ -11,7 +11,8 @@ data class Transaction(
     val subcategory: Subcategory? = null,
     val description: String? = null,
     val tags: List<String> = emptyList(),
-    val receiptImagePath: String? = null
+    val receiptImagePath: String? = null,
+    val goalId: Long? = null
 )
 
 enum class TransactionType {

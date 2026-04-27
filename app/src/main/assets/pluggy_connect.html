@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Conectar Banco</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; background: #fff; }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.pluggy.ai/pluggy-connect/v2.8.2/pluggy-connect.js"></script>
+    <script>
+        function initPluggy(connectToken, includeSandbox) {
+            try {
+                var pluggyConnect = new PluggyConnect({
+                    connectToken: connectToken,
+                    includeSandbox: includeSandbox === 'true' || includeSandbox === true,
+                    forceOauthInBrowser: true,
+                    onSuccess: function(itemData) {
+                        // Notify the Android app via custom scheme
+                        window.location.href = 'financeapp://callback?itemId=' + itemData.item.id;
+                    },
+                    onError: function(error) {
+                        // Notify the Android app about the error
+                        var msg = error && error.message ? error.message : 'Erro desconhecido';
+                        window.location.href = 'financeapp://error?message=' + encodeURIComponent(msg);
+                    },
+                    onOpen: function() {
+                        console.log('Pluggy Connect opened');
+                    },
+                    onClose: function() {
+                        window.location.href = 'financeapp://close';
+                    }
+                });
+                pluggyConnect.init();
+            } catch(e) {
+                window.location.href = 'financeapp://error?message=' + encodeURIComponent(e.message || 'Erro ao inicializar Pluggy');
+            }
+        }
+    </script>
+</body>
+</html>

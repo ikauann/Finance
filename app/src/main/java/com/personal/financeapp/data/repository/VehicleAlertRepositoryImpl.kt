@@ -29,6 +29,10 @@ class VehicleAlertRepositoryImpl @Inject constructor(
     override suspend fun dismissAlert(alertId: Long) {
         dao.dismissAlert(alertId)
     }
+
+    override suspend fun resetAllData() {
+        dao.deleteAllAlerts()
+    }
 }
 
 fun VehicleAlertEntity.toDomain() = VehicleAlert(

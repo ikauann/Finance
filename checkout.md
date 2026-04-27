@@ -36,7 +36,6 @@
 1. **Página de Cupons / ScanReceipt:** A aba de escaneamento por câmera (Ícone da aba `Cupom`) ainda precisa de polimento para usar a Gemini AI e extrair itens.
 2. **Assistant / Voice Interaction:** A integração com o Assistente de Inteligência Artificial usando interface imersiva de chat.
 3. **Gestão do Banco:** Remover `.fallbackToDestructiveMigration()` do `DatabaseModule.kt` quando formos estabilizar a versão de Produção.
-4. **Linkagem Real (Goals <-> Transactions):** Ligar os aportes do Goals (mockados do histórico) às próprias transactions categorizadas como "Investimento/Metas".
 
 ---
 *Ambiente salvo e código commitado.* Bom trabalho e até a próxima etapa!

@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,7 +34,8 @@ class DashboardViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        onEvent(DashboardEvent.SeedDatabase)
+        // Seeding desativado para manter o app totalmente vazio
+        // onEvent(DashboardEvent.SeedDatabase)
     }
 
     private val _isLoading = MutableStateFlow(false)
@@ -100,6 +100,11 @@ class DashboardViewModel @Inject constructor(
             is DashboardEvent.SeedDatabase -> {
                 viewModelScope.launch {
                     seedDatabaseUseCase()
+                }
+            }
+            is DashboardEvent.ResetDatabase -> {
+                viewModelScope.launch {
+                    seedDatabaseUseCase.reset()
                 }
             }
             is DashboardEvent.AddTransaction -> {
